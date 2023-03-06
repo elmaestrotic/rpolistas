@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 class Nodo {
@@ -8,10 +9,15 @@ private:
 
 public:
     Nodo(int data);
+
     Nodo(int data, Nodo *link);
+
     int getData() const;
+
     void setData(int data);
+
     Nodo *getLink() const;
+
     void setLink(Nodo *link);
 };
 
@@ -31,7 +37,7 @@ int Nodo::getData() const {
 }
 
 void Nodo::setData(int data) {
-    Nodo::data = data;
+    this->data = data;
 }
 
 Nodo *Nodo::getLink() const {
@@ -39,7 +45,7 @@ Nodo *Nodo::getLink() const {
 }
 
 void Nodo::setLink(Nodo *link) {
-    Nodo::link = link;
+    this->link = link;
 }
 
 class Lista {
@@ -48,14 +54,19 @@ private:
 
 public:
     Lista();
+
     void crearLista();
+
     void insertarALaCabeza(int dato);
+
     void visualizarLista();
 };
+
 //definición de los métodos de la clase Lista
-Lista::Lista() {head=NULL;}
+Lista::Lista() { head = NULL; }
+
 void Lista::crearLista() {
-    head = nullptr;
+    head = NULL;
     int datoentrada;
     cout << "Ingrese un entero o -1 para terminar: " << endl;
     do {
@@ -68,40 +79,37 @@ void Lista::crearLista() {
 
 void Lista::insertarALaCabeza(int dato) {
     Nodo *nuevo;
+    nuevo->setData(dato);
     if (head == nullptr) {
-        cout << "Lista vacía" << endl;
+        nuevo->setLink(NULL);
     } else {
-
-        nuevo->setData(dato);
         nuevo->setLink(head);
     }
     head = nuevo;
 }
 
 void Lista::visualizarLista() {
-    int n = 0;//contador de nodos
     Nodo *temp;
     if (head == nullptr) {
         cout << "Lista vacía" << endl;
     } else {
         temp=head;
+        int n = 0;//contador de nodos
         while (temp != NULL) {
             char c;
-            c++;
-            c = (c % 10 != 0 ? ' ' : '\n');
-            cout << temp->getData() << "|" <<c;
-            temp->getLink();
-
+            n++;//contamos los nodos
+            c = (n % 10 != 0 ? ' ' : '\n');
+            cout << temp->getData() << "|" << c;
+           temp= temp->getLink();
         }
-
     }
-
 }
 
-int main() {
-    Lista lista;
-    lista.crearLista();
-    lista.insertarALaCabeza(10);
-    lista.visualizarLista();
-    return 0;
-}
+
+    int main() {
+        Lista lista;
+        lista.crearLista();
+        // lista.insertarALaCabeza(10);
+        lista.visualizarLista();
+        return 0;
+    }
