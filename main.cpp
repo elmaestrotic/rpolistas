@@ -47,12 +47,13 @@ private:
     Nodo *head;
 
 public:
+    Lista();
     void crearLista();
     void insertarALaCabeza(int dato);
     void visualizarLista();
 };
 //definición de los métodos de la clase Lista
-
+Lista::Lista() {head=NULL;}
 void Lista::crearLista() {
     head = nullptr;
     int datoentrada;
