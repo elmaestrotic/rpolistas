@@ -80,16 +80,12 @@ void Lista::visualizarLista() {
         }
     }
 }
-    void Lista::insertarAlaCabeza(int dato) {
-        Nodo* nuevo;
-        nuevo->setData(dato);
-        if(head== nullptr){
-           nuevo= NULL;
-        }else{
-            nuevo->setLink(head);
-        }
-        head=nuevo;
-    }
+  void Lista::insertarAlaCabeza(int dato){
+    Nodo *nuevo ;
+    nuevo = new Nodo(dato);
+    nuevo->setLink(head); // enlaza nuevo nodo al frente de la lista
+   head= nuevo; // mueve primero y apunta al nuevo nodo
+}
 
 
 int main() {
