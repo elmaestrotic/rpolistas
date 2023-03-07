@@ -81,7 +81,7 @@ void Lista::insertarALaCabeza(int dato) {
     Nodo *nuevo;
     nuevo->setData(dato);
     if (head == nullptr) {
-        nuevo->setLink(NULL);
+        nuevo=NULL;
     } else {
         nuevo->setLink(head);
     }
