@@ -1,115 +1,101 @@
 #include <iostream>
-
 using namespace std;
 
 class Nodo {
 private:
-    int data;
-    Nodo *link;
-
+int data;
+Nodo *link;
 public:
-    Nodo(int data);
+Nodo(int data);
+Nodo(int data, Nodo*link);
+int getData() const;
+Nodo* getLink() const;
 
-    Nodo(int data, Nodo *link);
-
-    int getData() const;
-
-    void setData(int data);
-
-    Nodo *getLink() const;
-
-    void setLink(Nodo *link);
-};
-
-//Definición de métodos de la clase Nodo
+void setData(int dato);
+void setLink(Nodo* link);
+};//fin de la class Nodo
+//Defininimos los métodos de la clase Nodo
 Nodo::Nodo(int data) {
-    this->data = data;
-    this->link = NULL;
+    this->data=data;
+    this->link= 0;
 }
-
-Nodo::Nodo(int data, Nodo *link) {
-    this->data = data;
-    this->link = link;
+Nodo::Nodo(int data, Nodo* link) {
+    this->data=data;
+    this->link= link;
 }
 
 int Nodo::getData() const {
-    return data;
+    return this->data;
 }
 
-void Nodo::setData(int data) {
-    this->data = data;
+Nodo* Nodo::getLink() const {
+    return this->link;
 }
 
-Nodo *Nodo::getLink() const {
-    return link;
+void Nodo::setData(int dato) {
+    data=dato;
 }
+
 
 void Nodo::setLink(Nodo *link) {
-    this->link = link;
+    this->link=link;
 }
 
-class Lista {
+class Lista{
 private:
-    Nodo *head;
+    Nodo* head;
 
 public:
     Lista();
-
     void crearLista();
-
-    void insertarALaCabeza(int dato);
-
     void visualizarLista();
+    void insertarAlaCabeza(int dato);
 };
-
-//definición de los métodos de la clase Lista
-Lista::Lista() { head = NULL; }
+//Definimos métodos de la clase Lista
+Lista::Lista() {head= NULL;}
 
 void Lista::crearLista() {
-    head = NULL;
-    int datoentrada;
-    cout << "Ingrese un entero o -1 para terminar: " << endl;
-    do {
-        cin >> datoentrada;
-        if (datoentrada != -1) {
-            head = new Nodo(datoentrada, head);
-        }
-    } while (datoentrada != -1);
+    int dato;
+   cout << "Ingrese enteros o -1 para terminar"<<endl;
+    do{
+       cin>> dato;
+       if (dato != -1){
+           this->head=new Nodo(dato,head);
+       }
+    }while(dato !=-1);
 }
-
-void Lista::insertarALaCabeza(int dato) {
-    Nodo *nuevo;
-    nuevo->setData(dato);
-    if (head == nullptr) {
-        nuevo=NULL;
-    } else {
-        nuevo->setLink(head);
-    }
-    head = nuevo;
-}
-
 void Lista::visualizarLista() {
+    int n;//contador de nodos
     Nodo *temp;
     if (head == nullptr) {
-        cout << "Lista vacía" << endl;
+        cout << "La lista está vacía " << endl;
     } else {
-        temp=head;
-        int n = 0;//contador de nodos
+        temp = head;
         while (temp != NULL) {
             char c;
-            n++;//contamos los nodos
             c = (n % 10 != 0 ? ' ' : '\n');
+            n++;
             cout << temp->getData() << "|" << c;
-           temp= temp->getLink();
+            temp = temp->getLink();
         }
     }
 }
-
-
-    int main() {
-        Lista lista;
-        lista.crearLista();
-        // lista.insertarALaCabeza(10);
-        lista.visualizarLista();
-        return 0;
+    void Lista::insertarAlaCabeza(int dato) {
+        Nodo* nuevo;
+        nuevo->setData(dato);
+        if(head== nullptr){
+           nuevo= NULL;
+        }else{
+            nuevo->setLink(head);
+        }
+        head=nuevo;
     }
+
+
+int main() {
+    Lista lista;
+    lista.crearLista();
+    lista.insertarAlaCabeza(8);
+    lista.visualizarLista();
+    return 0;
+}
